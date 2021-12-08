@@ -1,8 +1,11 @@
-<h5>All information about wolds currencies at <%= Currency.all.first.created_at.strftime('%d.%m.%Y %H:%M:%S') %></h5>
+<div class = "col-sm-12 mt-3">
+  <h5><p class="text-center"> Вся информация о валютах всего мира </h5></p>
+</div>
+
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col-sm-auto">
+    <div class="row row-cols-2 row-cols-md-2 g-4">
       <% @currencies.each do |currency| %>
         <div class="col mb-4">
           <div class="card">

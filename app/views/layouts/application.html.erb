@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CurrenciesWithViews</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>CurrenciesWithViews</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'All currencies', root_path %></h5>
-      <%= link_to 'load currencies', load_currencies_path, method: :post, class: 'btn btn-outline-primary' %>
+<body>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-auto bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'All currencies', root_path %></h5>
+    <%= link_to 'Загрузить валюты', load_currencies_path, method: :post, class: 'btn btn-outline-primary' %>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-0 bg-white box-shadow">
+      <%= link_to 'Обновить валюты', update_rates_currencies_path, method: :post, class: 'btn btn-outline-primary' %>
     </div>
+  </div>
 
   <div class="container">
     <%= yield %>
   </div>
-  </body>
+</body>
 </html>
