@@ -5,13 +5,13 @@ class CurrenciesController < ApplicationController
 
   def show
     @currency = Currency.find_by(char_code: params[:char_code])
-    @error_msg = 'not_found' unless @currency
   end
 
   def load
     Parser.xml_into_hash.each do |el|
       Currency.create(el)
     end
+    redirect_to root_path
   end
 
   def update_rates
@@ -19,5 +19,6 @@ class CurrenciesController < ApplicationController
       currency = Currency.find_by(num_code: data_set[:num_code])
       currency.update(value: data_set[:value])
     end
+    redirect_to root_path
   end
 end
