@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-12">
+    <nav aria-label="breadcrumb" class="mt-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @currency.name %></li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="p-4 border">
+      <h2><%= @currency.name %></h2>
+      <p><strong>Краткое обозначение валюты:</strong>  <%= @currency.char_code %></p>
+      <p><strong>Код валюты:</strong>   <%= @currency.num_code %></p>
+      <p><strong>Номинал:</strong>  <%= @currency.nominal %></p>
+      <p><strong>Текущий курс:</strong>   <%= @currency.value %></p>
+    </div>
+  </div>
+</div>

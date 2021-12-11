@@ -8,6 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import 'bootstrap'
+import '../stylesheets/application.scss'
+const images = require.context('../images', true)
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
