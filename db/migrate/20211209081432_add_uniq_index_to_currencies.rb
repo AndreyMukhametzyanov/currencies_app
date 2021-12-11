@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUniqIndexToCurrencies < ActiveRecord::Migration[6.1]
   def change
     add_index :currencies, :num_code, unique: true

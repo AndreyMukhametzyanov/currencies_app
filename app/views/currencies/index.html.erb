@@ -1,20 +1,22 @@
-<div class = "col-sm-12 mt-3">
-  <h5><p class="text-center"> Вся информация о валютах всего мира </h5></p>
+<div class="row">
+  <div class = "col-sm-12 mt-3">
+    <h4 class="text-center my-4"> Вся информация о валютах всего мира </h4>
+  </div>
 </div>
 
-  <div class="row">
-    <div class="col-sm-auto">
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <% @currencies.each do |currency| %>
-          <div class="col mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><%= currency.name %></h5>
-                <p class="card-text"><%= link_to 'Подробнее', currency_path(currency.char_code), class: 'btn btn-info' %></p>
-              </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @currencies.each do |currency| %>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-4"><%= currency.name %></h5>
+              <p class="card-text"><%= link_to 'Подробнее', currency_path(currency.char_code), class: 'btn btn-info' %></p>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
+</div>

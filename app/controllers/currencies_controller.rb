@@ -1,17 +1,12 @@
+# frozen_string_literal: true
+
 class CurrenciesController < ApplicationController
   def index
-    @currencies = Currency.all
+    @currencies = Currency.all.order(:name)
   end
 
   def show
     @currency = Currency.find_by(char_code: params[:char_code])
-  end
-
-  def load
-    Parser.xml_into_hash.each do |el|
-      Currency.create(el)
-    end
-    redirect_to root_path
   end
 
   def update_rates

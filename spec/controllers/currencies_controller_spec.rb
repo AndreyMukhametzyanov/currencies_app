@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CurrenciesController, type: :controller do
-
   describe '#index' do
     let!(:currencies) { create_list :currency, 3 }
 
     before { get :index }
+
     it 'should returns correct renders for #index' do
       expect(response).to have_http_status(200)
       expect(assigns(:currencies)).to eq(currencies)
-      expect(response).to render_template("index")
+      expect(response).to render_template('index')
     end
   end
 
@@ -17,11 +19,11 @@ RSpec.describe CurrenciesController, type: :controller do
     let!(:currency) { create :currency }
 
     before { get :show, params: { char_code: currency.char_code } }
+
     it 'returns currency' do
-      # puts (assigns(:currency)).id
       expect(response).to have_http_status(200)
       expect(assigns(:currency)).to eq(currency)
-      expect(response).to render_template("show")
+      expect(response).to render_template('show')
     end
   end
 
@@ -42,7 +44,7 @@ RSpec.describe CurrenciesController, type: :controller do
     it 'should return updated currency and check redirect to root_path' do
       expect(response).to have_http_status(302)
       expect(currency.reload.value).to eq(value_after_update)
-      expect(response).to redirect_to("/")
+      expect(response).to redirect_to(root_path)
     end
   end
 end
