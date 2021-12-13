@@ -23,6 +23,11 @@ Bundler.require(*Rails.groups)
 module CurrenciesWithViews
   class Application < Rails::Application
     config.load_defaults 6.1
+
+    config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir.glob("#{config.root}/app/workers/*")
+    config.autoload_paths += Dir.glob("#{config.root}/app/interactions/*")
+
     config.autoload_paths << Rails.root.join('lib')
     config.generators.system_tests = nil
   end

@@ -18,7 +18,7 @@ class Parser
         char_code: element.elements['CharCode'].text,
         nominal: element.elements['Nominal'].text,
         name: element.elements['Name'].text,
-        value: element.elements['Value'].text
+        value: (element.elements['Value'].text)
       }
     end
   end
