@@ -2,15 +2,29 @@
 
 class CurrenciesController < ApplicationController
   def index
-    @currencies = Currency.all.order(:name)
+    outcome = ListCurrencies.run
+
+    if outcome.valid?
+      @currencies = outcome.result
+    else
+      @currencies = []
+      flash.now[:notice] = outcome.errors.messages[:currencies].join(' ')
+    end
+
   end
 
   def show
-    @currency = Currency.find_by(char_code: params[:char_code])
+    outcome = FindCurrency.run(params)
+    if outcome.valid?
+      @currency = outcome.result
+    else
+      redirect_to root_path, alert: outcome.errors.messages[:currency].join(' ')
+    end
+
   end
 
   def update_rates
-    UpdateRatesWorker.perform_async
+    UpdateRatesWorker.run
     redirect_to root_path, notice: "Идет обновление курсов валют. Подождите"
   end
 end
