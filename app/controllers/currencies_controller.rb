@@ -24,7 +24,7 @@ class CurrenciesController < ApplicationController
   end
 
   def update_rates
-    UpdateRatesWorker.run
+    UpdateCurrencies.run
     redirect_to root_path, notice: "Идет обновление курсов валют. Подождите"
   end
 end
