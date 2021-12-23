@@ -3,12 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe CurrenciesController, type: :controller do
-  describe "parser" do
-    before do
-      expect(Parser).to receive(:xml_into_hash).and_return(fake_data)
-      post :update_rates
-    end
-  end
 
   describe '#index' do
     let!(:currencies) { create_list :currency, 3 }
