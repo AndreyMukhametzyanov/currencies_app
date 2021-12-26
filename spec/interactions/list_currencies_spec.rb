@@ -1,16 +1,23 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ListCurrencies do
   subject { described_class.run }
+  context 'when currency is exists' do
+    let!(:currencies) { create_list :currency, 3 }
+    let(:record_keys) { %w[id num_code char_code nominal name value created_at updated_at] }
 
-  let!(:currencies) { create_list :currency, 3 }
-  let(:record_keys) { %w[id phone first_name last_name date_of_birth comment created_at updated_at] }
-
-  it 'return all users with status ok' do
-    # expect(response).to have_http_status(200)
-    expect(subject[:status]).to eq('ok')
-    expect(subject[:data].count).to eq(user.count)
-    expect(subject[:data].first.keys).to match_array(record_keys)
+    it 'return all users with status ok' do
+      expect(subject.result.count).to eq(3)
+      expect(subject).to be_valid
+    end
   end
-
+  context 'when currency does not exists' do
+    let(:invalid_currency) { [id: 'alert'] }
+    it 'should return error' do
+      expect(subject).to_not be_valid
+      expect(subject.errors.messages_for(:currencies).first).to eq('There is no currencies exists!')
+    end
+  end
 end
