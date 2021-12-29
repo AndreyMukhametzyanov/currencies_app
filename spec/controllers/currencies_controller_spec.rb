@@ -4,7 +4,6 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe CurrenciesController, type: :controller do
-
   describe '#index' do
     let!(:currencies) { create_list :currency, 3 }
 

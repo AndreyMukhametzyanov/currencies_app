@@ -10,7 +10,6 @@ class CurrenciesController < ApplicationController
       @currencies = []
       flash.now[:notice] = outcome.errors.messages[:currencies].join(' ')
     end
-
   end
 
   def show
@@ -20,12 +19,11 @@ class CurrenciesController < ApplicationController
     else
       redirect_to root_path, alert: outcome.errors.messages[:currency].join(' ')
     end
-
   end
 
   def update_rates
     jid = UpdateRatesWorker.perform_async
     Rails.logger.info("UpdateRatesWorker started with jid = #{jid}")
-    redirect_to root_path, notice: "Идет обновление курсов валют. Подождите"
+    redirect_to root_path, notice: 'Идет обновление курсов валют. Подождите'
   end
 end

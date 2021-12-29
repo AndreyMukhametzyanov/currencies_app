@@ -3,12 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe FindCurrency do
-
   context 'when the currency exists' do
-    let!(:currency) { create :currency }
-    let(:fake_char_code) { 'MYC' }
+    let!(:currency) { create :currency, char_code: 'MYC' }
 
-    subject { described_class.run(char_code: fake_char_code) }
+    subject { described_class.run(char_code: 'MYC') }
 
     it 'should return currency ' do
       expect(subject).to be_valid
