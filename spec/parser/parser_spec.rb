@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Parser do
   describe '#xml_into_hash' do
-    let(:fake_xml) do
+    let(:my_xml) do
       <<~XML
         <?xml version='1.0' encoding='UTF-8'?>
           <ValCurs Date="23.12.2021" name="Foreign Currency Market">
@@ -26,19 +26,19 @@ RSpec.describe Parser do
       XML
     end
 
-    let(:xml) do
-      { currency1: { num_code: '036', char_code: 'AUD', nominal: '1', name: 'Австралийский доллар', value: '52.6788' },
-        currency2: { num_code: '944', char_code: 'AZN', nominal: '1', name: 'Азербайджанский манат',
-                     value: '43.4315' } }
+    let(:result) do
+      [{ num_code: '036', char_code: 'AUD', nominal: '1', name: 'Австралийский доллар', value: '52.6788' },
+       { num_code: '944', char_code: 'AZN', nominal: '1', name: 'Азербайджанский манат', value: '43.4315' }]
     end
 
     before do
       stub_request(:get, 'https://www.cbr.ru/scripts/XML_daily.asp')
-        .to_return(status: 200, body: fake_xml.split("\n").map(&:strip).join, headers: { 'Content-Type' => 'application/xml' })
+        .to_return(status: 200, body: my_xml.split("\n").map(&:strip)
+                                            .join, headers: { 'Content-Type' => 'application/xml' })
     end
 
     it 'should return correct hash' do
-      expect(Parser.xml_into_hash).to eq(xml.values)
+      expect(Parser.xml_into_hash).to eq(result)
     end
   end
 end

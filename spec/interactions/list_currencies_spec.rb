@@ -12,6 +12,7 @@ RSpec.describe ListCurrencies do
     it 'return all users with status ok' do
       expect(subject).to be_valid
       expect(subject.result.count).to eq(3)
+      expect(subject.result).to match_array(currencies)
     end
   end
 

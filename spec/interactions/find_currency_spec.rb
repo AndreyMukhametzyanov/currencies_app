@@ -20,7 +20,8 @@ RSpec.describe FindCurrency do
 
     it 'should return error message' do
       expect(subject).to_not be_valid
-      expect(subject.errors.messages_for(:currency).to_sentence).to eq("Currency with char_code = #{fake} is not found!")
+      expect(subject.errors.messages_for(:currency).to_sentence)
+        .to eq("Currency with char_code = #{fake} is not found!")
     end
   end
 end
