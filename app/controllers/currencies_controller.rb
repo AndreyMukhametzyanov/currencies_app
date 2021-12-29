@@ -2,18 +2,28 @@
 
 class CurrenciesController < ApplicationController
   def index
-    @currencies = Currency.all.order(:name)
+    outcome = ListCurrencies.run
+
+    if outcome.valid?
+      @currencies = outcome.result
+    else
+      @currencies = []
+      flash.now[:notice] = outcome.errors.messages[:currencies].join(' ')
+    end
   end
 
   def show
-    @currency = Currency.find_by(char_code: params[:char_code])
+    outcome = FindCurrency.run(params)
+    if outcome.valid?
+      @currency = outcome.result
+    else
+      redirect_to root_path, alert: outcome.errors.messages[:currency].join(' ')
+    end
   end
 
   def update_rates
-    Parser.xml_into_hash.each do |data_set|
-      currency = Currency.find_by(num_code: data_set[:num_code])
-      currency.update(value: data_set[:value])
-    end
-    redirect_to root_path
+    jid = UpdateRatesWorker.perform_async
+    Rails.logger.info("UpdateRatesWorker started with jid = #{jid}")
+    redirect_to root_path, notice: 'Идет обновление курсов валют. Подождите'
   end
 end

@@ -12,6 +12,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4"><%= currency.name %></h5>
+              <h6 class="card-title mb-4">Курс: <%= currency.value %></h6>
               <p class="card-text"><%= link_to 'Подробнее', currency_path(currency.char_code), class: 'btn btn-info' %></p>
             </div>
           </div>

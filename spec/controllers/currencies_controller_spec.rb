@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe CurrenciesController, type: :controller do
   describe '#index' do
@@ -37,13 +38,12 @@ RSpec.describe CurrenciesController, type: :controller do
     end
 
     before do
-      expect(Parser).to receive(:xml_into_hash).and_return(fake_data)
       post :update_rates
     end
 
     it 'should return updated currency and check redirect to root_path' do
       expect(response).to have_http_status(302)
-      expect(currency.reload.value).to eq(value_after_update)
+      expect(UpdateRatesWorker).to have_enqueued_sidekiq_job
       expect(response).to redirect_to(root_path)
     end
   end

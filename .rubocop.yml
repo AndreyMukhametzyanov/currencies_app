@@ -1,12 +1,10 @@
 AllCops:
-  TargetRubyVersion: 2.7.1
+  TargetRubyVersion: 3.0.1
   NewCops: enable
   Exclude:
     - db/**/*
-    - node_modules/**/*
     - bin/*
     - vendor/bundle/**/*
-    - stages/**/*
 
 Metrics/MethodLength:
   Max: 30
@@ -28,11 +26,18 @@ Metrics/BlockLength:
     - spec/**/*
 Style/ClassAndModuleChildren:
   Enabled: false
+
 Style/Documentation:
   Enabled: false
+
 Layout/LineLength:
   Max: 120
+
 Bundler/GemComment:
   Enabled: false
+
 Metrics/AbcSize:
   Max: 40
+
+Layout/EndOfLine:
+  Enabled: false
