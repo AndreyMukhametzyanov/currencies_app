@@ -38,7 +38,7 @@ RSpec.describe Parser do
     end
 
     it 'should return correct hash' do
-      expect(Parser.xml_into_hash).to eq(result)
+      expect(CbrParser.xml_into_hash).to eq(result)
     end
   end
 end

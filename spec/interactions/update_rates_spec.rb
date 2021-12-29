@@ -13,7 +13,7 @@ RSpec.describe UpdateRates do
   end
 
   before do
-    expect(Parser).to receive(:xml_into_hash).and_return(updated_data)
+    expect(CbrParser).to receive(:xml_into_hash).and_return(updated_data)
   end
 
   it 'should return updated currency' do
