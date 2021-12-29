@@ -170,6 +170,9 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
+    rspec-sidekiq (3.1.0)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.10.3)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -240,6 +243,7 @@ DEPENDENCIES
   redis
   rexml
   rspec-rails (~> 5.0.0)
+  rspec-sidekiq
   sass-rails (>= 6)
   shoulda-matchers (~> 5.0)
   sidekiq

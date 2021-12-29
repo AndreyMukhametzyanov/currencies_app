@@ -3,7 +3,7 @@ class ListCurrencies < ActiveInteraction::Base
     currencies = Currency.all
 
     if currencies.any?
-      currencies
+      currencies.order(:name)
     else
       errors.add(:currencies, "There is no currencies exists!")
     end

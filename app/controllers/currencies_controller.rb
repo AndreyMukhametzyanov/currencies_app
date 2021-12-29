@@ -24,7 +24,8 @@ class CurrenciesController < ApplicationController
   end
 
   def update_rates
-    UpdateCurrencies.run
+    jid = UpdateRatesWorker.perform_async
+    Rails.logger.info("UpdateRatesWorker started with jid = #{jid}")
     redirect_to root_path, notice: "Идет обновление курсов валют. Подождите"
   end
 end

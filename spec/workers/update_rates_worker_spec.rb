@@ -9,11 +9,9 @@ RSpec.describe UpdateRatesWorker, type: :worker do
   let(:fake_data) do
     [{ num_code: currency.num_code, value: value_after_update }]
   end
-  before do
-    expect(UpdateRates).to receive(:run).and_return(fake_data)
-  end
 
-  it 'should return updated currency ' do
-    expect(UpdateRates.run.first[:value]).to eq(value_after_update)
+  it "should call interaction" do
+    expect(UpdateRates).to receive(:run).and_return(fake_data)
+    UpdateRatesWorker.new.perform
   end
 end
