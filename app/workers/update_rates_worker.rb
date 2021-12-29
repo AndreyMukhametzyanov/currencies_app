@@ -4,6 +4,6 @@ class UpdateRatesWorker
   include Sidekiq::Worker
 
   def perform(*_args)
-    UpdateRates.run
+    UpdateRates.run(logger: logger)
   end
 end
