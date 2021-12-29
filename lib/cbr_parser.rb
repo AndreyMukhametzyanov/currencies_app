@@ -5,7 +5,7 @@ require 'uri'
 require 'rexml/document'
 require 'json'
 
-class Parser
+class CbrParser
   CRB_PATH = 'https://www.cbr.ru/scripts/XML_daily.asp'
 
   def self.xml_into_hash
