@@ -2,5 +2,5 @@
 
 desc 'Получение данных с сайта https://www.cbr.ru/scripts/XML_daily.asp'
 task load_currencies: :environment do
-  Parser.xml_into_hash.each { |el| Currency.create(el) }
+  CbrParser.xml_into_hash.each { |el| Currency.create(el) }
 end
