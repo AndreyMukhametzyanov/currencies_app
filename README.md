@@ -1,24 +1,34 @@
-# README
+# Currency with views on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Сервис собирает данные с 'https://www.cbr.ru/scripts/XML_daily.asp' и выводит пользователю актуальные на сегодняшний день данные по всем валютам мира
 
-Things you may want to cover:
+Запуск:
 
-* Ruby version
+- Установить зависимости
+```shell
+bundle install
+```
 
-* System dependencies
+- Создать БД
+```shell
+rails db:create
+```
 
-* Configuration
+- Запустить миграции
+```shell
+rails db:migrate
+```
 
-* Database creation
+- Запустить загрузку данных
+```shell
+rake load_currencies
+```
+- Установить гем 'foreman' https://github.com/ddollar/foreman
+```shell
+gem install foreman
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Запустить 'foreman'
+```shell
+foreman start
+```
